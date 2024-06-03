@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/animations.css">  
+    <link rel="stylesheet" href="css/main.css">  
+    <link rel="stylesheet" href="css/index.css">
+    <title>eDoc</title>
+    <style>
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+        }
+        .arrow {
+            margin-left: 10px;
+            transition: transform 0.3s;
+        }
+        .options {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 30px;
+            right: 0;
+        }
+        .options a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .options a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="full-height">
+        <center>
+        <table border="0">
+            <tr>
+                <td width="80%">
+                    <font class="edoc-logo">NHO </font>
+                    <font class="edoc-logo-sub">| The New Health Order</font>
+                </td>
+                <td width="10%">
+                    <div class="nav-item" onclick="toggleOptions('login-options')">
+                        <p>LOGIN <span class="arrow">&#9662;</span></p>
+                        <div class="options" id="login-options">
+                            <a href="#" onclick="redirectTo('login', 'patient')">Patient</a>
+                            <a href="#" onclick="redirectTo('login', 'doctor')">Doctor</a>
+                        </div>
+                    </div>
+                </td>
+                <td width="10%">
+                    <div class="nav-item" onclick="toggleOptions('register-options')">
+                        <p>REGISTER <span class="arrow">&#9662;</span></p>
+                        <div class="options" id="register-options">
+                            <a href="#" onclick="redirectTo('register', 'patient')">Patient</a>
+                            <a href="#" onclick="redirectTo('register', 'doctor')">Doctor</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p class="heading-text">We bring quality health services to directly to our patients.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p class="sub-text2">Are you sick and don't feel like going to the hospital. <br>Don't worry! <br> With our services, you need only to make an appointment with our Doctor who will visit and provide you with all our services just from the comfort of your home.<br>
+                    We offer you a free doctor channeling service, Make your appointment now.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <center>
+                    <a href="login.php">
+                        <input type="button" value="Make Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                    </a>
+                </center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+        </table>
+        <p class="sub-text2 footer-hashen">A Web Solution by BYBP.</p>
+    </center>
+    </div>
+
+    <script>
+        function toggleOptions(id) {
+            const options = document.getElementById(id);
+            const isVisible = options.style.display === 'block';
+            const allOptions = document.querySelectorAll('.options');
+            allOptions.forEach(option => option.style.display = 'none'); // Hide all options
+            if (!isVisible) {
+                options.style.display = 'block';
+            }
+        }
+
+        function redirectTo(action, role) {
+            const baseUrl = 'http://localhost/edoc-doctor-appointment-system/';
+            let url = '';
+            if (action === 'login') {
+                url = role === 'patient' ? baseUrl + 'login.php' : baseUrl + 'login.php';
+            } else if (action === 'register') {
+                url = role === 'patient' ? baseUrl + 'patient_signup.php' : baseUrl + 'doctor_signup.php';
+            }
+            window.location.href = url;
+        }
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const loginOptions = document.getElementById('login-options');
+            const registerOptions = document.getElementById('register-options');
+            if (!event.target.closest('.nav-item')) {
+                loginOptions.style.display = 'none';
+                registerOptions.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
