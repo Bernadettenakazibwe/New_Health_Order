@@ -1,4 +1,4 @@
-version: '3.4'
+
 
 services:
   www:
@@ -15,10 +15,10 @@ services:
   db:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: edoc
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
     volumes:
@@ -30,7 +30,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "8080:80"
 
