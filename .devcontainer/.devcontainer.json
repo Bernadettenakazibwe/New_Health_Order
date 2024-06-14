@@ -1,0 +1,11 @@
+{
+    "name": "PHP & MySQL",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/var/www/html",
+    "extensions": [
+      "felixfbecker.php-debug",
+      "bmewburn.vscode-intelephense-client",
+      "neilbrayfield.php-docblocker"
+    ]
+  }
