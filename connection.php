@@ -1,6 +1,6 @@
 <?php
 
-    $database= new mysqli("localhost","root","","edoc");
+    $database= new mysqli("db","user","userpassword","edoc");
     if ($database->connect_error){
         die("Connection failed:  ".$database->connect_error);
     }
