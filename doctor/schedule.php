@@ -1,3 +1,32 @@
+<?php
+
+    //learn from w3schools.com
+
+    session_start();
+
+    if(isset($_SESSION["user"])){
+        if(($_SESSION["user"])=="" or $_SESSION['usertype']!='d'){
+            header("location: ../login.php");
+            exit();
+        }else{
+            $useremail=$_SESSION["user"];
+        }
+
+    }else{
+        header("location: ../login.php");
+    }
+    
+    
+
+    //import database
+    include("../connection.php");
+    $userrow = $database->query("select * from doctor where docemail='$useremail'");
+    $userfetch=$userrow->fetch_assoc();
+    $userid= $userfetch["docid"];
+    $username=$userfetch["docname"];
+ //echo $userid;
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,33 +48,7 @@
 </style>
 </head>
 <body>
-    <?php
-
-    //learn from w3schools.com
-
-    session_start();
-
-    if(isset($_SESSION["user"])){
-        if(($_SESSION["user"])=="" or $_SESSION['usertype']!='d'){
-            header("location: ../login.php");
-        }else{
-            $useremail=$_SESSION["user"];
-        }
-
-    }else{
-        header("location: ../login.php");
-    }
     
-    
-
-    //import database
-    include("../connection.php");
-    $userrow = $database->query("select * from doctor where docemail='$useremail'");
-    $userfetch=$userrow->fetch_assoc();
-    $userid= $userfetch["docid"];
-    $username=$userfetch["docname"];
- //echo $userid;
- ?>
  <div class="container">
      <div class="menu">
      <table class="menu-container" border="0">

@@ -1,3 +1,55 @@
+<?php
+// Start the session at the very top before any output
+session_start();
+
+// Check user session and type
+if (isset($_SESSION["user"])) {
+    if ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'a') {
+        header("location: ../login.php");
+        exit();
+    }
+} else {
+    header("location: ../login.php");
+    exit();
+}
+
+// Import database connection
+include("../connection.php");
+
+$error = '3'; // Default error code
+
+if ($_POST) {
+    // Fetch data from POST request
+    $name = $_POST['name'];
+    $nic = $_POST['nic'];
+    $spec = $_POST['spec'];
+    $email = $_POST['email'];
+    $tele = $_POST['Tele'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    if ($password == $cpassword) {
+        $result = $database->query("SELECT * FROM webuser WHERE email='$email';");
+
+        if ($result->num_rows == 1) {
+            $error = '1'; // Email already exists
+        } else {
+            $sql1 = "INSERT INTO doctor (docemail, docname, docpassword, docnic, doctel, specialties) VALUES ('$email', '$name', '$password', '$nic', '$tele', '$spec');";
+            $sql2 = "INSERT INTO webuser (email, usertype) VALUES ('$email', 'd')"; // Correct the column name to match your schema
+            $database->query($sql1);
+            $database->query($sql2);
+
+            $error = '4'; // Successful insertion
+        }
+    } else {
+        $error = '2'; // Passwords do not match
+    }
+}
+
+header("location: doctors.php?action=add&error=" . $error);
+exit();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,83 +59,13 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/admin.css">
-        
     <title>Doctor</title>
     <style>
-        .popup{
+        .popup {
             animation: transitionIn-Y-bottom 0.5s;
         }
-</style>
+    </style>
 </head>
 <body>
-<?php
-
-//learn from w3schools.com
-
-session_start();
-
-if(isset($_SESSION["user"])){
-    if(($_SESSION["user"])=="" or $_SESSION['usertype']!='a'){
-        header("location: ../login.php");
-    }
-
-}else{
-    header("location: ../login.php");
-}
-
-
-
-//import database
-include("../connection.php");
-
-
-
-if($_POST){
-    //print_r($_POST);
-    $result= $database->query("select * from webuser");
-    $name=$_POST['name'];
-    $nic=$_POST['nic'];
-    $spec=$_POST['spec'];
-    $email=$_POST['email'];
-    $tele=$_POST['Tele'];
-    $password=$_POST['password'];
-    $cpassword=$_POST['cpassword'];
-    
-    if ($password==$cpassword){
-        $error='3';
-        $result= $database->query("select * from webuser where email='$email';");
-        if($result->num_rows==1){
-            $error='1';
-        }else{
-
-            $sql1="insert into doctor(docemail,docname,docpassword,docnic,doctel,specialties) values('$email','$name','$password','$nic','$tele',$spec);";
-            $sql2="insert into webuser values('$email','d')";
-            $database->query($sql1);
-            $database->query($sql2);
-
-            //echo $sql1;
-            //echo $sql2;
-            $error= '4';
-            
-        }
-        
-    }else{
-        $error='2';
-    }
-
-
-    
-    
-}else{
-    //header('location: signup.php');
-    $error='3';
-}
-
-
-header("location: doctors.php?action=add&error=".$error);
-?>
-
-
-
 </body>
 </html>

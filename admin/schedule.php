@@ -1,19 +1,20 @@
 <?php
-session_start();
 
-if (!isset($_SESSION["user"]) || ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'a')) {
-    header("location: ../login.php");
-    exit();
-}
+    //learn from w3schools.com
 
+    session_start();
 
+    if (!isset($_SESSION["user"]) || ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'a')) {
+        header("location: ../login.php");
+        exit();
+    }
+    
 
-//import database
-include("../connection.php");
+    //import database
+    include("../connection.php");
 
-
-?>
-
+    
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,7 @@ include("../connection.php");
 </style>
 </head>
 <body>
-   
+    
     <div class="container">
         <div class="menu">
             <table class="menu-container" border="0">
