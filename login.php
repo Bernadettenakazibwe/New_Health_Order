@@ -68,7 +68,7 @@
     <link rel="stylesheet" href="css/login.css">
     <title>Login</title>
 </head>
-<body>
+<body style='background-color: hsl(186, 100%, 19%);'>
    
 
     <center>

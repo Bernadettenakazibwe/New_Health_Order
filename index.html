@@ -1,125 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/animations.css">  
-    <link rel="stylesheet" href="css/main.css">  
-    <link rel="stylesheet" href="css/index.css">
-    <title>eDoc</title>
-    <style>
-        .nav-item {
-            position: relative;
-            cursor: pointer;
-        }
-        .arrow {
-            margin-left: 10px;
-            transition: transform 0.3s;
-        }
-        .options {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            top: 30px;
-            right: 0;
-        }
-        .options a {
-            display: block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: black;
-        }
-        .options a:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>New Health Order</title>
+  <meta name="title" content="New-Health=Order">
+ 
+ 
+  
+  
+  
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="css/animations.css">  
+  <link rel="stylesheet" href="css/main.css">  
+  <link rel="stylesheet" href="css/index.css">
+  
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+
 </head>
-<body>
-    <div class="full-height">
-        <center>
-        <table border="0">
-            <tr>
-                <td width="80%">
-                    <font class="edoc-logo">NHO </font>
-                    <font class="edoc-logo-sub">| The New Health Order</font>
-                </td>
-                <td width="10%">
-                    <div class="nav-item" >
-                        <p><span class='arrow'<a href="login.php"> LOGIN</a></span></p>
-                        
-                    </div>
-                </td>
-                <td width="10%">
-                    <div class="nav-item" onclick="toggleOptions('register-options')">
-                        <p><span class='arrow'<a href="signup.php"> REGISTER</a></span></p>
-                        
-                        
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <p class="heading-text">We bring quality health services to directly to our patients.</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <p class="sub-text2">Are you sick and don't feel like going to the hospital. <br>Don't worry! <br> With our services, you need only to make an appointment with our Doctor who will visit and provide you with all our services just from the comfort of your home.<br>
-                    We offer you a free doctor channeling service, Make your appointment now.</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <center>
-                    <a href="login.php">
-                        <input type="button" value="Make Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
-                    </a>
-                </center>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-            </tr>
-        </table>
-        <p class="sub-text2 footer-hashen">A Web Solution by BYBP.</p>
-    </center>
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preloader" data-preloader>
+    <div class="circle"></div>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+        <td width="80%">
+            <font class="edoc-logo">NHO </font>
+            <font class="edoc-logo-sub">| The New Health Order</font>
+        </td>
+
+      
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+
+          
+          <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+        </div>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link title-md">Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#aboutus" class="navbar-link title-md">About Us</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#Services" class="navbar-link title-md">Services</a>
+          </li>
+
+          
+
+          <li class="navbar-item">
+            <a href="#contact" class="navbar-link title-md">Contact</a>
+          </li>
+
+        </ul>
+
+        
+
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <a href="login.php" class="btn has-before title-md">Make Appointment</a>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
     </div>
+  </header>
 
-    <script>
-        function toggleOptions(id) {
-            const options = document.getElementById(id);
-            const isVisible = options.style.display === 'block';
-            const allOptions = document.querySelectorAll('.options');
-            allOptions.forEach(option => option.style.display = 'none'); // Hide all options
-            if (!isVisible) {
-                options.style.display = 'block';
-            }
-        }
 
-        function redirectTo(action, role) {
-            const baseUrl = 'http://localhost/edoc-doctor-appointment-system/';
-            let url = '';
-            if (action === 'login') {
-                url = role === 'patient' ? baseUrl + 'login.php' : baseUrl + 'login.php';
-            } else if (action === 'register') {
-                url = role === 'patient' ? baseUrl + 'patient_signup.php' : baseUrl + 'doctor_signup.php';
-            }
-            window.location.href = url;
-        }
 
-        // Close dropdown if clicked outside
-        document.addEventListener('click', function(event) {
-            const loginOptions = document.getElementById('login-options');
-            const registerOptions = document.getElementById('register-options');
-            if (!event.target.closest('.nav-item')) {
-                loginOptions.style.display = 'none';
-                registerOptions.style.display = 'none';
-            }
-        });
-    </script>
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home" id='home'>
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle has-before" data-reveal="left">Welcome To New Health Order</p>
+
+            <h1 class="headline-lg hero-title" data-reveal="left">
+              We bring Health Services To You.
+            </h1>
+
+            <br>
+
+            <br>
+            
+
+           
+
+              <p class="hero-subtitle has-before" data-reveal="left">
+                Book an appointment with us and let us treat you immediately. Let us come to you. No need to join long waiting patients lists.
+              </p>
+
+              <br>
+
+                <button class="btn has-before">
+                  
+
+                  <a href='login.php'><span class="span title-md">Book appointment now.</span></a>
+                </button>
+
+              
+
+            </div>
+
+          </div>
+
+          
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="service" aria-label="service" id ='Services'>
+        <div class="container">
+
+          <ul class="service-list">
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-1.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="headline-sm card-title">
+                  <a href="#">Psychiatry</a>
+                </h3>
+
+                <p class="card-text">
+                   In this department, we treat the soul to ensure comfortable and healthy lives.
+                </p>
+
+               
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-2.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="headline-sm card-title">
+                  <a href="#">Gynecology</a>
+                </h3>
+
+                <p class="card-text">
+                  Bring new lives into the world with our great Gynecologists.
+                </p>
+
+                
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-3.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="headline-sm card-title">
+                  <a href="#">General Practice</a>
+                </h3>
+
+                <p class="card-text">
+                  We ensure healthy well being through providing all treatments needed.
+                </p>
+
+               
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-4.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="headline-sm card-title">
+                  <a href="#">Laboratory and Blood tests</a>
+                </h3>
+
+                <p class="card-text">
+                  Allow us to collect body and blood samples, take tests and bring the test result to you.
+                </p>
+
+                
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" aria-labelledby="about-label" id="aboutus">
+        <div class="container">
+
+          <div class="about-content">
+
+            <p class="section-subtitle title-lg has-after tab-text" id="about-label" data-reveal="left">About Us</p>
+
+            <h2 class="headline-md" data-reveal="left">Experienced Doctors</h2>
+
+            <p class="section-text tab-text" data-reveal="left">
+              We save lives by providing healt care for all.
+            </p>
+
+            <ul class="tab-list" data-reveal="left">
+
+              <li>
+                <button class="tab-btn active">Vision</button>
+              </li>
+
+              <li>
+                <button class="tab-btn">Mission</button>
+              </li>
+
+              
+
+            </ul>
+
+            <p class="tab-text" data-reveal="left">
+              Our cherised goal is to become the leading preventive health needs provider in Ghana at client's conducive  tie and date in their abode.
+
+            </p>
+
+           
+
+          </div>
+
+          <figure class="about-banner" data-reveal="right">
+            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about banner"
+              class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+     
+
+ 
+            
+               
+
+
+
+
+
+
+     
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+    <div class="container">
+
+      <div class="section footer-top">
+
+        <div class="footer-brand" data-reveal="bottom" id="contact">
+
+          
+
+          <ul class="contact-list has-after">
+
+            <li class="contact-item">
+
+              <div class="item-icon">
+                <ion-icon name="mail-open-outline"></ion-icon>
+              </div>
+
+              <div>
+                <p>
+                  Main Email : <a href="mailto:contact@website.com" class="contact-link">contact@nho.com</a>
+                </p>
+
+                <p>
+                  Inquiries : <a href="mailto:Info@mail.com" class="contact-link">info@nho.com</a>
+                </p>
+              </div>
+
+            </li>
+
+            <li class="contact-item">
+
+              <div class="item-icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+
+              <div>
+                <p>
+                  Office Telephone : <a href="tel:0029129102320" class="contact-link">071237654</a>
+                </p>
+
+                <p>
+                  Mobile : <a href="tel:000232439493" class="contact-link">071288889999</a>
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="footer-list" data-reveal="bottom">
+
+          <p class="headline-sm footer-list-title">About Us</p>
+
+          <p class="text">
+            At New Health Order, we bring health services to you. No need for long waiting time.
+          </p>
+
+          <address class="address">
+            <ion-icon name="map-outline"></ion-icon>
+
+            <span class="text">
+              84307 <br>
+              Ghana
+            </span>
+          </address>
+
+        </div>
+
+        <ul class="footer-list" data-reveal="bottom">
+
+          <li>
+            <p class="headline-sm footer-list-title">Services</p>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Psychiatry</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">General Paractice</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Accident and Emergency</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Pediatrics</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Gynecology/a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Laboratory</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list" data-reveal="bottom">
+
+          <li>
+            <p class="headline-sm footer-list-title">Useful Links</p>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">About Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Contact Us </a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Our Services</a>
+          </li>
+
+          <li>
+            <a href="#" class="text footer-link">Join as a Doctor</a>
+          </li>
+
+          
+
+         
+
+        </ul>
+
+        
+
+         
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <p class="text copyright">
+          &copy; New Health Order | All Rights Reserved by New Health Order
+        </p>
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-google"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+         
+
+        </ul>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  
+
 </body>
+
 </html>
