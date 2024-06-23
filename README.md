@@ -1,3 +1,5 @@
+# NEW HEALTH ORDER
+
 
 
 ## Features
@@ -33,7 +35,13 @@
     
 
 -----------------------------------------------
+## Getting started with codespaces:
 
+- Open the repository with codespaces.
+- Run docker-compose build in the command line.
+- Run docker-compose up in the command line.
+- Then, the project will run on port 80.
+- 
 
 
 
